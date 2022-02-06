@@ -63,16 +63,14 @@ export default defineComponent({
 
     //get name
     const name = computed(() => {
-      const nameArray = email.value.split(".");
-      if (nameArray.length == 2) {
+      const nameArray = email.value.split("@")[0];
+      const nameFull=nameArray.split(".")
+      console.log(nameArray);
+      if (nameArray.length >= 2) {
         return (
-          nameArray[0].toUpperCase() +
-          nameArray[0].slice(1) +
-          " " +
-          nameArray[1].toUpperCase() +
-          nameArray[1].slice(1)
+          nameFull[0][0].toUpperCase()+nameFull[0].slice(1)+" "+nameFull[1][0].toUpperCase()+nameFull[1].slice(1)
         );
-      } else return nameArray[0];
+      } else return nameFull[0];
     });
     const store = useStore();
     return {
